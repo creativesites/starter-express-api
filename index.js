@@ -64,7 +64,8 @@ app.all('/', (req, res) => {
     //console.log('Dialogflow Request headers: ' + JSON.stringify(req.headers));
     //console.log('Dialogflow Request body: ' + JSON.stringify(req.body));
     async function main(agent) {
-        let userSays = req.body.queryResult.queryText;
+        try{
+            let userSays = req.body.queryResult.queryText;
         let user1 = req.body.session;
         let user2 = user1.substring(user1.lastIndexOf('/') + 1)
         let user = await User.findOne({ user2 });
@@ -154,6 +155,11 @@ app.all('/', (req, res) => {
             user.prompt += response.data.choices[0].text
             await user.save();
         }
+        } catch(err){
+            console.log(err)
+            agent.add('Sorry, I am having trouble understanding you. Please try again.')
+        }
+        
         
     }
     let intentMap = new Map();
