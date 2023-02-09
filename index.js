@@ -3,9 +3,9 @@ const { Configuration, OpenAIApi } = require("openai");
 const {WebhookClient} = require('dialogflow-fulfillment');
 const express = require('express');
 const https = require("https");
-
+require('dotenv').config()
 const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: process.env.OPENAI_API_KEY,
 });
 const mongoose = require("mongoose");
 
