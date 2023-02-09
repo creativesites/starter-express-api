@@ -5,7 +5,7 @@ const express = require('express');
 const https = require("https");
 
 const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: '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',
 });
 const mongoose = require("mongoose");
 
